@@ -50,6 +50,7 @@ public class CatalogController {
     public String viewItem(@RequestParam("itemId") String itemId, Model model){
         if (itemId!=null){
             Item item=catalogService.getItem(itemId);
+            Product product=catalogService.getProduct(item.getProductId());
             model.addAttribute("item",item);
         }
         return "catalog/c_Item";
