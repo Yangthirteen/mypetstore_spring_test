@@ -7,10 +7,10 @@ import org.csu.mypetstore.service.UserActionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -28,6 +28,7 @@ public class OrderController {
     @Autowired
     CatalogService catalogService;
 
+    @GetMapping("/catalog/viewOrderList")
     public String viewOrderList(@RequestParam("username")String username, Model model){
         if (username!=null){
             List<Order> orderList=orderService.getOrdersByUsername(username);
@@ -36,6 +37,7 @@ public class OrderController {
         return "order/ListOrders";
     }
 
+    @GetMapping("/catalog/viewOrder")
     public String viewOrder(@RequestAttribute("account")Account account,@RequestAttribute("order")Order order){
         orderService.setOrderId(order);
 
@@ -54,6 +56,7 @@ public class OrderController {
         return "order/ViewOrder";
     }
 
+    @GetMapping("/catalog/viewCart")
     public String viewCart(@RequestAttribute("cart") Cart cart, Model model){
         if (cart==null){
             cart=new Cart();
@@ -62,6 +65,7 @@ public class OrderController {
         return "cart/Cart";
     }
 
+    @GetMapping("/catalog/UpdateCartQuantitiesServlet")
     public String UpdateCartQuantitiesServlet(@RequestAttribute("cart")Cart cart,@RequestParam("itemId")String itemId){
 
         Iterator<CartItem> cartItems = cart.getAllCartItems();
@@ -81,6 +85,7 @@ public class OrderController {
         return "cart/Cart";
     }
 
+    @GetMapping("/catalog/removeItemFromCart")
     public String removeItemFromCart(@RequestAttribute("cart") Cart cart,@RequestParam("cartItemId")String cartItemId,Model model){
         Item item=cart.removeItemById(cartItemId);
         if (item==null){
@@ -91,6 +96,7 @@ public class OrderController {
         }
     }
 
+    @GetMapping("/catalog/newOrderServlet")
     public String newOrderServlet(@RequestAttribute("order") Order order,@RequestParam("shippingAddressRequired") String shippingAddressRequired,Model model){
         model.addAttribute("order", order);
 
@@ -102,6 +108,7 @@ public class OrderController {
         }
     }
 
+    @GetMapping("/catalog/newOrderFormServlet")
     public String newOrderFormServlet(@RequestAttribute("account")Account account,@RequestAttribute("cart")Cart cart,Model model){
 
         if (account == null) {
@@ -118,6 +125,7 @@ public class OrderController {
         }
     }
 
+    @GetMapping("/catalog/listOrders")
     public String listOrders(@RequestAttribute("account")Account account,Model model){
 
         List<Order> orderList = orderService.getOrdersByUsername(account.getUsername());
@@ -126,6 +134,7 @@ public class OrderController {
         return "order/ListOrders";
     }
 
+    @GetMapping("/catalog/addItemToCart")
     public String addItemToCart(@RequestParam("workingItemId")String workingItemId,@RequestAttribute("account")Account account,@RequestAttribute("cart")Cart cart,Model model){
 
         if(cart==null){
