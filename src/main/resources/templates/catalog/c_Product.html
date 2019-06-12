@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/common_head::head">
+
+</head>
+<body>
+<header th:replace="common/common_bottom::header">
+
+</header>
+<div id="Content">
+
+    <div id="BackLink">
+        <a href="Category.html">Return
+            to Category</a>
+    </div>
+
+    <div id="Catalog">
+
+        <h2>Product Name</h2>
+
+        <table>
+            <tr>
+                <th>Item ID</th>
+                <th>Product ID</th>
+                <th>Description</th>
+                <th>List Price</th>
+                <th>&nbsp;</th>
+            </tr>
+            <!-- list -->
+            <tr>
+                <td><a href="#">EST-16</a></td>
+                <td>FL-DLH-02</td>
+                <td>Adult Female Persian</td>
+                <td>$93.50</td>
+                <td><a class="Button" href="../cart/Cart.html">Add
+                    to Cart</a></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<footer th:replace="common/common_bottom::footer">
+
+</footer>
+</body>
+</html>

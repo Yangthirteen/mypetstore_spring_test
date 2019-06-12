@@ -30,7 +30,7 @@ public class CatalogController {
             model.addAttribute("category",category);
             model.addAttribute("productList",productList);
         }
-        return "catalog/Category";
+        return "catalog/c_Category";
     }
 
 
