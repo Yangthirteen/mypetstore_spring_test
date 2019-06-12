@@ -99,6 +99,7 @@ public class OrderController {
         Item item=cart.removeItemById(cartItemId);
         if (item==null){
             model.addAttribute("message","Attempted to remove null CartItem from Cart.");
+            model.addAttribute("cart",cart);
             return "common/Error";
         }else {
             return "cart/c_Cart";
