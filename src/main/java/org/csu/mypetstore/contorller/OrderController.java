@@ -36,7 +36,7 @@ public class OrderController {
         return "order/ListOrders";
     }
 
-    public String viewOrder(@RequestParam("account")Account account,@RequestParam("order")Order order){
+    public String viewOrder(@RequestAttribute("account")Account account,@RequestAttribute("order")Order order){
         orderService.setOrderId(order);
 
         try{
@@ -54,7 +54,7 @@ public class OrderController {
         return "order/ViewOrder";
     }
 
-    public String viewCart(@RequestParam("cart") Cart cart, Model model){
+    public String viewCart(@RequestAttribute("cart") Cart cart, Model model){
         if (cart==null){
             cart=new Cart();
             model.addAttribute("cart",cart);
@@ -62,7 +62,7 @@ public class OrderController {
         return "cart/Cart";
     }
 
-    public String UpdateCartQuantitiesServlet(@RequestParam("cart")Cart cart,@RequestParam("itemId")String itemId){
+    public String UpdateCartQuantitiesServlet(@RequestAttribute("cart")Cart cart,@RequestParam("itemId")String itemId){
 
         Iterator<CartItem> cartItems = cart.getAllCartItems();
         while (cartItems.hasNext()) {
@@ -81,7 +81,7 @@ public class OrderController {
         return "cart/Cart";
     }
 
-    public String removeItemFromCart(@RequestParam("cart") Cart cart,@RequestParam("cartItemId")String cartItemId,Model model){
+    public String removeItemFromCart(@RequestAttribute("cart") Cart cart,@RequestParam("cartItemId")String cartItemId,Model model){
         Item item=cart.removeItemById(cartItemId);
         if (item==null){
             model.addAttribute("message","Attempted to remove null CartItem from Cart.");
@@ -91,7 +91,7 @@ public class OrderController {
         }
     }
 
-    public String newOrderServlet(@RequestParam("order") Order order,@RequestParam("shippingAddressRequired") String shippingAddressRequired,Model model){
+    public String newOrderServlet(@RequestAttribute("order") Order order,@RequestParam("shippingAddressRequired") String shippingAddressRequired,Model model){
         model.addAttribute("order", order);
 
         String a=shippingAddressRequired;
