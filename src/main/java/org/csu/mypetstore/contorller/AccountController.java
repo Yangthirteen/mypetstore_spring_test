@@ -115,7 +115,7 @@ public class AccountController {
         return "account/a_EditAccountForm";
     }
 
-    @GetMapping("/account/editAccountForm")
+    @GetMapping("/catalog/editAccountForm")
     public String editAccountForm(@RequestParam("username")String username, Model model){
         Account account=accountService.getAccount(username);
 

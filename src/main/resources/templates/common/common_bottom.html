@@ -16,16 +16,16 @@
                       <a  th:if="${account == null}" href="signonForm">  Sign In </a>
 
 
-                      <div th:if="${account != null}">
+                      <span th:if="${account != null}">
                           <a th:if="${!authenticated}" href="signonForm">  Sign In </a>
 
 
                           <a th:if="${authenticated}" href="signOff">   Sign Out </a>
-                          <img align="middle" src="images/separator.gif" />
+                          <img align="middle" src="/images/separator.gif" />
 
                           <a  th:if="${authenticated}" th:href="'editAccountForm?username='+${account.username}">    My Account </a>
 
-                      </div>
+                      </span>
 
 
                   <img align="middle" src="/images/separator.gif" />
