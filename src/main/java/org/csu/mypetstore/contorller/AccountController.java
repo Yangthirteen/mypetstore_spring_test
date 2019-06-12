@@ -16,6 +16,14 @@ public class AccountController {
     private Account account=new Account();
     private boolean authenticated=false;
 
+    public boolean getAuthenticated() {
+        return authenticated;
+    }
+
+    public void setAuthenticated(boolean authenticated) {
+        this.authenticated = authenticated;
+    }
+
     public Account getAccount() {
         return account;
     }
@@ -82,7 +90,7 @@ public class AccountController {
         return "catalog/c_Main";
     }
 
-    @GetMapping("/catalog/newAccount")
+    @PostMapping("/catalog/newAccount")
     public String newAccount(@RequestParam("username")String username,
                                     @RequestParam("password")String password,
                                     @RequestParam("account.firstName")String account_firstName,
@@ -125,7 +133,7 @@ public class AccountController {
         return "account/a_NewAccountForm";
     }
 
-    @GetMapping("/catalog/editAccount")
+    @PostMapping("/catalog/editAccount")
     public String editAccount(@RequestAttribute("account")Account account, Model model){
         accountService.updateAccount(account);
         model.addAttribute("account",account);
