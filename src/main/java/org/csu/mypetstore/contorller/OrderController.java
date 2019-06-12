@@ -1,6 +1,7 @@
 package org.csu.mypetstore.contorller;
 
 import org.csu.mypetstore.domain.*;
+import org.csu.mypetstore.service.CatalogService;
 import org.csu.mypetstore.service.OrderService;
 import org.csu.mypetstore.service.UserActionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class OrderController {
 
     @Autowired
     UserActionService userActionService;
+
+    @Autowired
+    CatalogService catalogService;
 
     public String viewOrderList(@RequestParam("username")String username, Model model){
         if (username!=null){
@@ -112,5 +116,38 @@ public class OrderController {
             model.addAttribute("message","An order could not be created because a cart could not be found.");
             return "common/Error";
         }
+    }
+
+    public String listOrders(@RequestAttribute("account")Account account,Model model){
+
+        List<Order> orderList = orderService.getOrdersByUsername(account.getUsername());
+
+        model.addAttribute("orderList",orderList);
+        return "order/ListOrders";
+    }
+
+    public String addItemToCart(@RequestParam("workingItemId")String workingItemId,@RequestAttribute("account")Account account,@RequestAttribute("cart")Cart cart,Model model){
+
+        if(cart==null){
+            cart=new Cart();
+        }
+
+        if (cart.containsItemId(workingItemId)){
+            cart.incrementQuantityByItemId(workingItemId);
+        }else {
+            boolean isInStock = catalogService.isItemInStock(workingItemId);
+            Item item = catalogService.getItem(workingItemId);
+            cart.addItem(item, isInStock);
+        }
+
+
+        Date currentData=new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss");
+        String date = sdf.format(currentData);
+        userActionService.record(account.getUsername(),"add item to cart ",workingItemId,date);
+
+
+        model.addAttribute("cart",cart);
+        return "cart/Cart";
     }
 }

@@ -5,9 +5,8 @@ import org.csu.mypetstore.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.io.PrintWriter;
 
 @Controller
 public class AccountController {
@@ -65,7 +64,7 @@ public class AccountController {
         return "catalog/Main";
     }
 
-    public String newAccountServlet(@RequestParam("username")String username,
+    public String newAccount(@RequestParam("username")String username,
                                     @RequestParam("password")String password,
                                     @RequestParam("account.firstName")String account_firstName,
                                     @RequestParam("account.lastName")String account_lastName,
@@ -95,5 +94,24 @@ public class AccountController {
         accountService.insertAccount(account);
 
         return "account/SignonForm";
+    }
+
+    public String newAccountForm(){
+        return "account/NewAccountForm";
+    }
+
+    public String editAccount(@RequestAttribute("account")Account account, Model model){
+        accountService.updateAccount(account);
+        model.addAttribute("account",account);
+        return "account/EditAccountForm";
+    }
+
+    public String editAccountForm(@RequestParam("username")String username, Model model){
+        Account account=accountService.getAccount(username);
+
+        model.addAttribute("username",username);
+        model.addAttribute("account",account);
+
+        return "account/EditAccountForm";
     }
 }
