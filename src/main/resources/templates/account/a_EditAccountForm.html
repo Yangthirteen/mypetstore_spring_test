@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common/common_head::head">
+<head th:replace="common/common_head::head('edit')">
 
 </head>
 <body>
 <header th:replace="common/common_bottom::header">
 </header>
-
+<div id="Content">
 <div id="Catalog">
     <form action="editAccount" method="post">
         <h3>User Information</h3>
@@ -27,13 +27,13 @@
         <div th:replace="a_EditAccountForm::includelist">
 
         </div>
-        <%@ include file="IncludeAccountFields.jsp"%>
+
 
         <input class="button" type="submit" name="editAccount" value="Save Account Information">
     </form>
      <a th:href="'viewOrderList?username='+${username}">My Orders</a>
 </div>
-
+</div>
 <footer th:replace="common/common_bottom::footer">
 </footer>
 </body>

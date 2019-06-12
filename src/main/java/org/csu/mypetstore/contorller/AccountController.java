@@ -31,7 +31,7 @@ public class AccountController {
         model.addAttribute("message",message);
     }
 
-    @GetMapping("/account/signOn")
+    @GetMapping("/catalog/signOn")
     public String signOn(@RequestParam("username")String username,@RequestParam("password")String password,@RequestParam("code1")String code1,@RequestParam("code")String code2,Model model){
         Account account=accountService.getAccount(username,password);
         boolean authenticated;
@@ -102,7 +102,7 @@ public class AccountController {
         return "account/a_SignonForm";
     }
 
-    @GetMapping("/account/newAccountForm")
+    @GetMapping("/catalog/newAccountForm")
     public String newAccountForm(){
         return "account/a_NewAccountForm";
     }
