@@ -15,7 +15,7 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @GetMapping("/catalog/usernameIsExist")
+    @GetMapping("/account/usernameIsExist")
     public void usernameIsExist(@RequestParam("username")String username, @RequestParam("message") String message, Model model){
         Account account = new Account();
         account.setUsername(username);
@@ -31,7 +31,7 @@ public class AccountController {
         model.addAttribute("message",message);
     }
 
-    @GetMapping("/catalog/signOn")
+    @GetMapping("/account/signOn")
     public String signOn(@RequestParam("username")String username,@RequestParam("password")String password,@RequestParam("code1")String code1,@RequestParam("code")String code2,Model model){
         Account account=accountService.getAccount(username,password);
         boolean authenticated;
@@ -58,7 +58,7 @@ public class AccountController {
         }
     }
 
-    @GetMapping("/catalog/signOnForm")
+    @GetMapping("/account/signOnForm")
     public String signOnForm(){
         return "account/a_SignonForm";
     }
@@ -102,7 +102,7 @@ public class AccountController {
         return "account/a_SignonForm";
     }
 
-    @GetMapping("/catalog/newAccountForm")
+    @GetMapping("/account/newAccountForm")
     public String newAccountForm(){
         return "account/a_NewAccountForm";
     }
@@ -114,7 +114,7 @@ public class AccountController {
         return "account/a_EditAccountForm";
     }
 
-    @GetMapping("/catalog/editAccountForm")
+    @GetMapping("/account/editAccountForm")
     public String editAccountForm(@RequestParam("username")String username, Model model){
         Account account=accountService.getAccount(username);
 

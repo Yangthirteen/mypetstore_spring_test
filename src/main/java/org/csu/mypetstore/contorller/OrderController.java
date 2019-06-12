@@ -120,8 +120,8 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/catalog/newOrderFormServlet")
-    public String newOrderFormServlet(@RequestAttribute("account")Account account,@RequestAttribute("cart")Cart cart,Model model){
+    @GetMapping("/catalog/newOrderForm")
+    public String newOrderForm(@RequestAttribute("account")Account account,@RequestAttribute("cart")Cart cart,Model model){
 
         if (account == null) {
             model.addAttribute("message","You must sign on before attempting to check out.  Please sign on and try checking out again.");
