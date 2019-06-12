@@ -75,7 +75,7 @@ public class OrderController {
     }
 
     @PostMapping("/catalog/updateCartQuantities")
-    public String updateCartQuantities(@RequestParam("itemId")String itemId){
+    public String updateCartQuantities(@RequestParam("name")String itemId){
 
         Iterator<CartItem> cartItems = cart.getAllCartItems();
         while (cartItems.hasNext()) {

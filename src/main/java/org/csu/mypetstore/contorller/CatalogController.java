@@ -40,6 +40,7 @@ public class CatalogController {
         if (productId!=null){
             Product product=catalogService.getProduct(productId);
             List<Item> itemList=catalogService.getItemListByProduct(productId);
+
             model.addAttribute("product",product);
             model.addAttribute("itemList",itemList);
         }

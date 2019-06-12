@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common/common_head::head">
+<head th:replace="common/common_head::head('searchlist')">
 
 </head>
 <body>
@@ -10,7 +10,7 @@
 <div id="Content">
 
     <div id="BackLink">
-        <a href="Main.html">Return to Main Menu</a>
+        <a href="/catalog/Main">Return to Main Menu</a>
     </div>
 
     <div id="Catalog">
@@ -21,6 +21,18 @@
                 <th>Product ID</th>
                 <th>Name</th>
             </tr>
+
+                <tr th:each="prduct : ${productList}">
+                    <td>
+                        <a  th:href="@{'viewProduct?productId='+${product.productId}}" th:text="${product.description}">FL-DLH-02</a>
+                        </td>
+                    <td><b>
+                        <a  th:href="@{'viewProduct?productId='+${product.productId}}" th:text="${product.productId}">FL-DLH-02</a>
+                       <font color="BLACK"> jsdjvndw </font></a>
+                    </b></td>
+                    <td th:text="${product.name}">Persian</td>
+
+                </tr>
 
         </table>
 

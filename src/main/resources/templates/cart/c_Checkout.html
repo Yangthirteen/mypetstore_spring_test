@@ -7,54 +7,56 @@
 <header th:replace="common/common_bottom::header">
 </header>
 
-<div id="Content">/IncludeTop.html" />
 
-    <div id="BackLink">
-        <stripes:link
-                beanclass="org.mybatis.jpetstore.web.actions.CartActionBean">
-            Return to Shopping Cart</stripes:link>
-    </div>
+<div id="BackLink">
+    <a href="viewCart">Return to Shopping Cart</a>
 
-    <div id="Catalog">
+</div>
 
-        <table>
-            <tr>
-                <td>
-                    <h2>Checkout Summary</h2>
+<div id="Catalog">
 
-                    <table>
+    <table>
+        <tr>
+            <td>
+                <h2>Checkout Summary</h2>
 
-                        <tr>
-                            <td><b>Item ID</b></td>
-                            <td><b>Product ID</b></td>
-                            <td><b>Description</b></td>
-                            <td><b>In Stock?</b></td>
-                            <td><b>Quantity</b></td>
-                            <td><b>List Price</b></td>
-                            <td><b>Total Cost</b></td>
+                <table>
+
+                    <tr>
+                        <td><b>Item ID</b></td>
+                        <td><b>Product ID</b></td>
+                        <td><b>Description</b></td>
+                        <td><b>In Stock?</b></td>
+                        <td><b>Quantity</b></td>
+                        <td><b>List Price</b></td>
+                        <td><b>Total Cost</b></td>
+                    </tr>
+
+                        <tr th:each="cartItem :${cart.cartItems}">
+                            <td>
+                                <a th:href="'viewItem?itemId='+${cartItem.item.itemId}" th:text="${cartItem.item.itemId}"></a>
+                            </td>
+                            <td th:text="${cartItem.item.product.productId}">${cartItem.item.product.productId}</td>
+                            <td th:text="${cartItem.item.attribute1} + ${cartItem.item.product.name}" >${item.attribute1}  </td>
+                            <td th:text="${cartItem.inStock}">${cartItem.inStock}</td>
+                            <td th:text="${cartItem.quantity}">${cartItem.quantity}</td>
+                            <td th:text="'$'+${cartItem.item.listPrice}">$93.50</td>
+
+                            <td id="total" th:text="'$'+${cartItem.total}"></td>
+                            <td>
+
                         </tr>
+                    <tr>
+                        <td colspan="7">Sub Total:
+                            <b th:text="'$'+${cart.subTotal}">ergr</b>
+                        </td>
+                    </tr>
+                </table>
 
-                        <!-- 循环 -->
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7">Sub Total: <fmt:formatNumber
-                                    value="" pattern="$#,##0.00" /></td>
-                        </tr>
-                    </table>
-                <td>&nbsp;</td>
+            <td>&nbsp;</td>
 
-            </tr>
-        </table>
-
-    </div>
+        </tr>
+    </table>
 
 </div>
 

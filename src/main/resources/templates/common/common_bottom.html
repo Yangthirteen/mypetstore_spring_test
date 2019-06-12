@@ -3,7 +3,7 @@
       <header th:fragment="header">
           <div id="Logo">
               <div id="LogoContent">
-                  <a href="main"><img src="/images/logo-topbar.gif" /></a>
+                  <a href="Main"><img src="/images/logo-topbar.gif" /></a>
               </div>
           </div>
 
@@ -11,10 +11,27 @@
               <div id="MenuContent">
                   <a href="viewCart"><img align="middle" name="img_cart" src="/images/cart.gif" /></a>
                   <img align="middle" src="/images/separator.gif" />
-                  <a href="/account/SignonForm.html">Sign In</a>
-                  <a href="#">Sign Out</a>
-                  <img align="middle" src="/images/separator.gif" />
-                  <a href="#">My Account</a>
+
+
+
+
+                      <a  th:if="${account == null}" href="signonForm">  Sign In </a>
+
+
+                      <div th:if="${account != null}">
+                          <a th:if="${!authenticated}" href="signonForm">  Sign In </a>
+
+
+
+
+                          <a th:if="${authenticated}" href="signOff">   Sign Out </a>
+                          <img align="middle" src="images/separator.gif" />
+
+                          <a  th:if="${authenticated}" th:href="'editAccountForm?username='+${account.username}">    My Account </a>
+
+                      </div>
+
+
                   <img align="middle" src="/images/separator.gif" />
                   <a href="/help.html">?</a>
               </div>
@@ -30,19 +47,19 @@
           </div>
 
           <div id="QuickLinks">
-              <a href="category?categoryId=FISH"><img
+              <a href="viewCategory?categoryId=FISH"><img
                       src="/images/sm_fish.gif" /></a>
               <img src="/images/separator.gif" />
-              <a href="category?categoryId=DOGS"><img
+              <a href="viewCategory?categoryId=DOGS"><img
                       src="/images/sm_dogs.gif" /></a>
               <img src="/images/separator.gif" />
-              <a href="category?categoryId=REPTILES"><img
+              <a href="viewCategory?categoryId=REPTILES"><img
                       src="/images/sm_reptiles.gif" /></a>
               <img src="/images/separator.gif" />
-              <a href="category?categoryId=CATS"><img
+              <a href="viewCategory?categoryId=CATS"><img
                   src="/images/sm_cats.gif" /></a>
               <img src="/images/separator.gif" />
-              <a href="category?categoryId=BIRDS"><img
+              <a href="viewCategory?categoryId=BIRDS"><img
                       src="/images/sm_birds.gif" /></a>
           </div>
       </header>

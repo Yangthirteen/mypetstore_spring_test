@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common/common_head::head">
+<head th:replace="common/common_head::head('item')">
 
 </head>
 <body>
@@ -10,47 +10,43 @@
 <div id="Content">
 
     <div id="BackLink">
-        <a href="Product.html">Return
-            to Product</a>
+        <a  th:href="@{'viewProduct?productId='+${product.productId}}" th:text="'Return to  '+${product.productId}"> yvyiv </a>
     </div>
 
     <div id="Catalog">
 
         <table>
             <tr>
-                <td></td>
+                <td th:utext="${product.description}">${sessionScope.product.description}</td>
+            </tr>
+            <tr>
+                <td><b th:text="${item.itemId}"> ${sessionScope.item.itemId} </b></td>
+            </tr>
+            <tr>
+                <td><b th:text="${item.attribute1}+${product.name}"><font size="4"> ${sessionScope.item.attribute1}
+
+                    ${sessionScope.product.name} </font></b></td>
+            </tr>
+            <tr>
+                <td th:text="${product.name}">${sessionScope.product.name}</td>
             </tr>
             <tr>
                 <td>
-                    <b> </b>
+                  <div th:if="${item.quantity <= 0}"> Back ordered. </div>
+                     <div th:if="${item.quantity > 0}" th:text="${item.quantity}">
+                          in stock.
+                     </div>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <b>
-                        <font size="4">
-                        </font>
-                    </b>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-            </tr>
-            <tr>
-                <td>
-                    Back ordered.
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    ${sessionScope.item.listPrice}
-                </td>
+                <td th:text="'$'+${item.listPrice}">$93.50</td>
             </tr>
 
             <tr>
                 <td>
-                    <a class="Button" href="../cart/Cart.html">Add to Cart</a>
+                    <a class="Button" th:href="@{'addItemToCart?workingItemId='+${item.itemId}}" >Add to Cart</a>
                 </td>
+
             </tr>
         </table>
 

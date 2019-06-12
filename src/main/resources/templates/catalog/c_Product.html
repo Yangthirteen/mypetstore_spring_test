@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common/common_head::head">
+<head th:replace="common/common_head::head('product'+${product.productId})">
 
 </head>
 <body>
@@ -10,7 +10,7 @@
 <div id="Content">
 
     <div id="BackLink">
-        <a href="viewCategory?categoryId=${product.categoryId}" th:text="Return to +${product.categoryId}">text</a>
+        <a  th:href="@{'viewCategory?categoryId='+${product.categoryId}}"  th:text=" 'Return to  ' +${product.categoryId}">text</a>
     </div>
 
     <div id="Catalog">
@@ -26,14 +26,13 @@
                 <th>&nbsp;</th>
             </tr>
             <!-- list -->
-            <tr th:each="item :itemList">
-                <td><a href="viewItem?itemId=${item.itemId}" th:text="${item.itemId}">${item.itemId}</a></td>
-                <td>${item.product.productId}</td>
-                <td>${item.attribute1} ${item.attribute2} ${item.attribute3}
-                    ${item.attribute4} ${item.attribute5} ${sessionScope.product.name}</td>
-                <td>$93.50</td>
+            <tr th:each="item :${itemList}">
+                <td><a  th:href="@{'viewItem?itemId='+${item.itemId}}" th:text="${item.itemId}">${item.itemId}</a></td>
+                <td th:text="${item.product.productId}">${item.product.productId}</td>
+                <td th:text="${item.attribute1} + ${product.name}" >${item.attribute1}  </td>
+                <td th:text="'$'+${item.listPrice}">$93.50</td>
                 <td>
-                    <a class="Button" href="addItemToCart?workingItemId=${item.itemId}" >Add to Cart</a>
+                    <a class="Button" th:href="@{'addItemToCart?workingItemId='+${item.itemId}}" >Add to Cart</a>
 
                 </td>
             </tr>
