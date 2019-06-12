@@ -16,10 +16,15 @@ import java.util.List;
 public class CatalogController {
 
     @Autowired
+    AccountController accountController;
+
+    @Autowired
     private CatalogService catalogService;
 
     @GetMapping("/catalog/Main")
-    public String viewMain(){
+    public String viewMain(Model model){
+        model.addAttribute("account",accountController.getAccount());
+        model.addAttribute("authenticated",accountController.getAuthenticated());
         return "catalog/c_Main";
     }
 
