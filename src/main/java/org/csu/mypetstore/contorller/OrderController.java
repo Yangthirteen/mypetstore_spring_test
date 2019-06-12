@@ -20,6 +20,16 @@ import java.util.List;
 @Controller
 public class OrderController {
 
+    private Cart cart=new Cart();
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     @Autowired
     OrderService orderService;
 
@@ -58,11 +68,9 @@ public class OrderController {
     }
 
     @GetMapping("/catalog/viewCart")
-    public String viewCart(@RequestAttribute("cart") Cart cart, Model model){
-        if (cart==null){
-            cart=new Cart();
-            model.addAttribute("cart",cart);
-        }
+    public String viewCart(Model model){
+
+        model.addAttribute("cart",cart);
         return "cart/c_Cart";
     }
 
@@ -137,8 +145,6 @@ public class OrderController {
 
     @GetMapping("/catalog/addItemToCart")
     public String addItemToCart(@RequestParam("workingItemId")String workingItemId,Model model){
-
-          Cart cart=new Cart();
 
         if (cart.containsItemId(workingItemId)){
             cart.incrementQuantityByItemId(workingItemId);
