@@ -136,11 +136,9 @@ public class OrderController {
     }
 
     @GetMapping("/catalog/addItemToCart")
-    public String addItemToCart(@RequestParam("workingItemId")String workingItemId,@RequestAttribute("cart")Cart cart,Model model){
+    public String addItemToCart(@RequestParam("workingItemId")String workingItemId,Model model){
 
-        if(cart==null){
-            cart=new Cart();
-        }
+          Cart cart=new Cart();
 
         if (cart.containsItemId(workingItemId)){
             cart.incrementQuantityByItemId(workingItemId);
