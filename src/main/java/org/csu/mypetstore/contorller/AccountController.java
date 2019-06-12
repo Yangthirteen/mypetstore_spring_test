@@ -41,7 +41,7 @@ public class AccountController {
         if (!code.toLowerCase().equals(codeSession.toLowerCase())){
             flag=true;
             model.addAttribute("flag",flag);
-            return "account/SignonForm";
+            return "account/a_SignonForm";
         }else{
             flag=false;
             if (account==null){
@@ -53,20 +53,20 @@ public class AccountController {
                 model.addAttribute("authenticated",authenticated);
                 model.addAttribute("account",account);
                 model.addAttribute("flag",flag);
-                return "catalog/Main";
+                return "catalog/c_Main";
             }
         }
     }
 
     @GetMapping("/catalog/signOnForm")
     public String signOnForm(){
-        return "account/SignonForm";
+        return "account/a_SignonForm";
     }
 
     @GetMapping("/catalog/signOff")
     public String signOff(Model model){
         model.addAttribute("account",null);
-        return "catalog/Main";
+        return "catalog/c_Main";
     }
 
     @GetMapping("/catalog/newAccount")
@@ -99,19 +99,19 @@ public class AccountController {
 
         accountService.insertAccount(account);
 
-        return "account/SignonForm";
+        return "account/a_SignonForm";
     }
 
     @GetMapping("/catalog/newAccountForm")
     public String newAccountForm(){
-        return "account/NewAccountForm";
+        return "account/a_NewAccountForm";
     }
 
     @GetMapping("/catalog/editAccount")
     public String editAccount(@RequestAttribute("account")Account account, Model model){
         accountService.updateAccount(account);
         model.addAttribute("account",account);
-        return "account/EditAccountForm";
+        return "account/a_EditAccountForm";
     }
 
     @GetMapping("/catalog/editAccountForm")
@@ -121,6 +121,6 @@ public class AccountController {
         model.addAttribute("username",username);
         model.addAttribute("account",account);
 
-        return "account/EditAccountForm";
+        return "account/a_EditAccountForm";
     }
 }

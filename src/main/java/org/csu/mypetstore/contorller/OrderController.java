@@ -34,7 +34,7 @@ public class OrderController {
             List<Order> orderList=orderService.getOrdersByUsername(username);
             model.addAttribute("orderList",orderList);
         }
-        return "order/ListOrders";
+        return "order/o_ListOrders";
     }
 
     @GetMapping("/catalog/viewOrder")
@@ -53,7 +53,7 @@ public class OrderController {
         userActionService.record(account.getUsername(),"new order","",date);
 
 
-        return "order/ViewOrder";
+        return "order/o_ViewOrder";
     }
 
     @GetMapping("/catalog/viewCart")
@@ -62,7 +62,7 @@ public class OrderController {
             cart=new Cart();
             model.addAttribute("cart",cart);
         }
-        return "cart/Cart";
+        return "cart/c_Cart";
     }
 
     @GetMapping("/catalog/UpdateCartQuantitiesServlet")
@@ -82,7 +82,7 @@ public class OrderController {
                 e.printStackTrace();
             }
         }
-        return "cart/Cart";
+        return "cart/c_Cart";
     }
 
     @GetMapping("/catalog/removeItemFromCart")
@@ -92,7 +92,7 @@ public class OrderController {
             model.addAttribute("message","Attempted to remove null CartItem from Cart.");
             return "common/Error";
         }else {
-            return "cart/Cart";
+            return "cart/c_Cart";
         }
     }
 
@@ -102,9 +102,9 @@ public class OrderController {
 
         String a=shippingAddressRequired;
         if (a!=null){
-            return "order/ShippingForm";
+            return "order/o_ShippingForm";
         }else{
-            return "order/ConfirmOrder";
+            return "order/o_ConfirmOrder";
         }
     }
 
@@ -113,12 +113,12 @@ public class OrderController {
 
         if (account == null) {
             model.addAttribute("message","You must sign on before attempting to check out.  Please sign on and try checking out again.");
-            return "order/NewOrderForm";
+            return "order/o_NewOrderForm";
         } else if (cart != null) {
             Order order=new Order();
             order.initOrder(account, cart);
             model.addAttribute("order",order);
-            return "order/NewOrderForm";
+            return "order/o_NewOrderForm";
         } else {
             model.addAttribute("message","An order could not be created because a cart could not be found.");
             return "common/Error";
@@ -131,7 +131,7 @@ public class OrderController {
         List<Order> orderList = orderService.getOrdersByUsername(account.getUsername());
 
         model.addAttribute("orderList",orderList);
-        return "order/ListOrders";
+        return "order/o_ListOrders";
     }
 
     @GetMapping("/catalog/addItemToCart")
@@ -157,6 +157,6 @@ public class OrderController {
 
 
         model.addAttribute("cart",cart);
-        return "cart/Cart";
+        return "cart/c_Cart";
     }
 }

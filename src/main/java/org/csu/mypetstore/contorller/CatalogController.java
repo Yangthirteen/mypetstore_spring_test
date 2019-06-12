@@ -20,7 +20,7 @@ public class CatalogController {
 
     @GetMapping("/catalog/Main")
     public String viewMain(){
-        return "catalog/Main";
+        return "catalog/c_Main";
     }
 
     @GetMapping("/catalog/viewCategory")
@@ -43,7 +43,7 @@ public class CatalogController {
             model.addAttribute("product",product);
             model.addAttribute("itemList",itemList);
         }
-        return "catalog/Product";
+        return "catalog/c_Product";
     }
 
     @GetMapping("/catalog/viewItem")
@@ -52,7 +52,7 @@ public class CatalogController {
             Item item=catalogService.getItem(itemId);
             model.addAttribute("item",item);
         }
-        return "catalog/Item";
+        return "catalog/c_Item";
     }
 
     @GetMapping("/catalog/searchProduct")
@@ -61,6 +61,6 @@ public class CatalogController {
 
         model.addAttribute("productList",productList);
 
-        return "catalog/SearchProducts";
+        return "catalog/c_SearchProducts";
     }
 }
