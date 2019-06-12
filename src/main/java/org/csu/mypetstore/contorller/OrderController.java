@@ -136,7 +136,7 @@ public class OrderController {
     }
 
     @GetMapping("/catalog/addItemToCart")
-    public String addItemToCart(@RequestParam("workingItemId")String workingItemId,@RequestAttribute("account")Account account,@RequestAttribute("cart")Cart cart,Model model){
+    public String addItemToCart(@RequestParam("workingItemId")String workingItemId,@RequestAttribute("cart")Cart cart,Model model){
 
         if(cart==null){
             cart=new Cart();
@@ -154,7 +154,7 @@ public class OrderController {
         Date currentData=new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss");
         String date = sdf.format(currentData);
-        userActionService.record(account.getUsername(),"add item to cart ",workingItemId,date);
+       // userActionService.record(account.getUsername(),"add item to cart ",workingItemId,date);
 
 
         model.addAttribute("cart",cart);
