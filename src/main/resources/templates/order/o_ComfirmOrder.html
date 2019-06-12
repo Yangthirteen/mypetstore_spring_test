@@ -6,102 +6,100 @@
 <body>
 <header th:replace="common/common_bottom::header">
 </header>
-<div id="Content">
 
-    <div id="BackLink">
-        <a href="../catalog/Main.html">Return to Main Menu</a>
-    </div>
-
-    <div id="Catalog">
-        Please confirm the information below and then press continue...
-
-        <table>
-            <tbody>
-            <tr>
-                <th align="center" colspan="2"><font size="4"><b>Order</b></font>
-                    <br> <font size="3"><b> 2014/03/23 10:46:43</b></font></th>
-            </tr>
-
-            <tr>
-                <th colspan="2">Billing Address</th>
-            </tr>
-            <tr>
-                <td>First name:</td>
-                <td>ABC</td>
-            </tr>
-            <tr>
-                <td>Last name:</td>
-                <td>XYX</td>
-            </tr>
-            <tr>
-                <td>Address 1:</td>
-                <td>901 San Antonio Road</td>
-            </tr>
-            <tr>
-                <td>Address 2:</td>
-                <td>MS UCUP02-206</td>
-            </tr>
-            <tr>
-                <td>City:</td>
-                <td>Palo Alto</td>
-            </tr>
-            <tr>
-                <td>State:</td>
-                <td>CA</td>
-            </tr>
-            <tr>
-                <td>Zip:</td>
-                <td>94303</td>
-            </tr>
-            <tr>
-                <td>Country:</td>
-                <td>USA</td>
-            </tr>
-            <tr>
-                <th colspan="2">Shipping Address</th>
-            </tr>
-            <tr>
-                <td>First name:</td>
-                <td>ABC</td>
-            </tr>
-            <tr>
-                <td>Last name:</td>
-                <td>XYX</td>
-            </tr>
-            <tr>
-                <td>Address 1:</td>
-                <td>901 San Antonio Road</td>
-            </tr>
-            <tr>
-                <td>Address 2:</td>
-                <td>MS UCUP02-206</td>
-            </tr>
-            <tr>
-                <td>City:</td>
-                <td>Palo Alto</td>
-            </tr>
-            <tr>
-                <td>State:</td>
-                <td>CA</td>
-            </tr>
-            <tr>
-                <td>Zip:</td>
-                <td>94303</td>
-            </tr>
-            <tr>
-                <td>Country:</td>
-                <td>USA</td>
-            </tr>
-
-            </tbody>
-        </table>
-
-
-        <a class="Button"
-           href="ViewOrder.html">Confirm</a>
-    </div>
-
+<div id="BackLink">
+    <a href="Main">Return to Main Menu</a>
 </div>
+
+
+<div id="Catalog">Please confirm the information below and then
+    press continue...
+
+    <table>
+        <tr>
+            <th align="center" colspan="2"><font size="4"><b>Order</b></font>
+                <br />
+                <font size="3"><b th:text="${#dates.format(order.orderDate, 'yyyy/MM/dd hh:mm:ss')}"> febw</b></font>
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="2">Billing Address</th>
+        </tr>
+        <tr>
+            <td >First name:</td>
+            <td th:text="${order.billToFirstName}"></td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td th:text="${order.billToLastName}">order.billToLastName /></td>
+        </tr>
+        <tr>
+            <td>Address 1:</td>
+            <td th:text="${order.billAddress1}">order.billAddress1 /></td>
+        </tr>
+        <tr>
+            <td>Address 2:</td>
+            <td th:text="${order.billAddress2}">${order.billAddress2}" /></td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td th:text="${order.billCity}">${order.billCity}" /></td>
+        </tr>
+        <tr>
+            <td>State:</td>
+            <td th:text="${order.billState}">${order.billState}" /></td>
+        </tr>
+        <tr>
+            <td>Zip:</td>
+            <td th:text="${order.billZip}">${order.billZip}" /></td>
+        </tr>
+        <tr>
+            <td>Country:</td>
+            <td th:text="${order.billCountry}">${order.billCountry}" /></td>
+        </tr>
+        <tr>
+            <th colspan="2">Shipping Address</th>
+        </tr>
+        <tr>
+            <td>First name:</td>
+            <td th:text="${order.shipToFirstName}">${order.shipToFirstName}" /></td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td th:text="${order.shipToLastName}">${order.shipToLastName}" /></td>
+        </tr>
+        <tr>
+            <td>Address 1:</td>
+            <td th:text="${order.shipAddress1}">${order.shipAddress1}" /></td>
+        </tr>
+        <tr>
+            <td>Address 2:</td>
+            <td th:text="${order.shipAddress2}">${order.shipAddress2}" /></td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td th:text="${order.shipCity}">${order.shipCity}" /></td>
+        </tr>
+        <tr>
+            <td>State:</td>
+            <td th:text="${order.shipState}">${order.shipState}" /></td>
+        </tr>
+        <tr>
+            <td>Zip:</td>
+            <td th:text="${order.shipZip}">${order.shipZip}" /></td>
+        </tr>
+        <tr>
+            <td>Country:</td>
+            <td th:text="${order.shipCountry}">${order.shipCountry}" /></td>
+        </tr>
+
+    </table>
+
+
+    <a class="Button" th:href="'viewOrder?order='+${order}" >Confirm</a>
+</div>
+
 <footer th:replace="common/common_bottom::footer">
 </footer>
 </body>

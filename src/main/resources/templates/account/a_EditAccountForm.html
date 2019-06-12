@@ -7,141 +7,31 @@
 <header th:replace="common/common_bottom::header">
 </header>
 
-<div id="Content">
+<div id="Catalog">
+    <form action="editAccount" method="post">
+        <h3>User Information</h3>
+        <table>
+            <tr>
+                <td>User ID:</td>
+                <td th:text="${username}">${sessionScope.username}</td>
+            </tr>
+            <tr>
+                <td>New password:</td>
+                <td><input type="text" name="password"></td>
+            </tr>
+            <tr>
+                <td>Repeat password:</td>
+                <td><input type="text" name="repeatedPassword"></td>
+            </tr>
+        </table>
+        <div th:replace="a_EditAccountForm::includelist">
 
-    <div id="Catalog">
+        </div>
+        <%@ include file="IncludeAccountFields.jsp"%>
 
-
-        <form action="#" method="post">
-
-            <h3>User Information</h3>
-
-            <table>
-                <tbody>
-                <tr>
-                    <td>User ID:</td>
-                    <td>j2ee</td>
-                </tr>
-                <tr>
-                    <td>New password:</td>
-                    <td><input id="stripes--517137302" name="password"
-                               type="text"><script type="text/javascript">
-                        setTimeout(
-                            function() {
-                                try {
-                                    var z = document
-                                        .getElementById('stripes--517137302');
-                                    z.focus();
-                                    z.select();
-                                } catch (e) {
-                                }
-                            }, 1);
-                    </script></td>
-                </tr>
-                <tr>
-                    <td>Repeat password:</td>
-                    <td><input name="repeatedPassword" type="text"></td>
-                </tr>
-                </tbody>
-            </table>
-            <h3>Account Information</h3>
-
-            <table>
-                <tbody>
-                <tr>
-                    <td>First name:</td>
-                    <td><input name="account.firstName" value="ABC" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Last name:</td>
-                    <td><input name="account.lastName" value="XYX" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input name="account.email"
-                               value="yourname@yourdomain.com" type="text" size="40"></td>
-                </tr>
-                <tr>
-                    <td>Phone:</td>
-                    <td><input name="account.phone" value="555-555-5555"
-                               type="text"></td>
-                </tr>
-                <tr>
-                    <td>Address 1:</td>
-                    <td><input name="account.address1"
-                               value="901 San Antonio Road" type="text" size="40"></td>
-                </tr>
-                <tr>
-                    <td>Address 2:</td>
-                    <td><input name="account.address2" value="MS UCUP02-206"
-                               type="text" size="40"></td>
-                </tr>
-                <tr>
-                    <td>City:</td>
-                    <td><input name="account.city" value="Palo Alto" type="text"></td>
-                </tr>
-                <tr>
-                    <td>State:</td>
-                    <td><input name="account.state" value="CA" type="text"
-                               size="4"></td>
-                </tr>
-                <tr>
-                    <td>Zip:</td>
-                    <td><input name="account.zip" value="94303" type="text"
-                               size="10"></td>
-                </tr>
-                <tr>
-                    <td>Country:</td>
-                    <td><input name="account.country" value="USA" type="text"
-                               size="15"></td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h3>Profile Information</h3>
-
-            <table>
-                <tbody>
-                <tr>
-                    <td>Language Preference:</td>
-                    <td><select name="account.languagePreference">
-                        <option selected="selected" value="english">english</option>
-                        <option value="japanese">japanese</option>
-                    </select></td>
-                </tr>
-                <tr>
-                    <td>Favourite Category:</td>
-                    <td><select name="account.favouriteCategoryId">
-                        <option value="FISH">FISH</option>
-                        <option selected="selected" value="DOGS">DOGS</option>
-                        <option value="REPTILES">REPTILES</option>
-                        <option value="CATS">CATS</option>
-                        <option value="BIRDS">BIRDS</option>
-                    </select></td>
-                </tr>
-                <tr>
-                    <td>Enable MyList</td>
-                    <td><input name="account.listOption" value="true"
-                               type="checkbox" checked="checked"></td>
-                </tr>
-                <tr>
-                    <td>Enable MyBanner</td>
-                    <td><input name="account.bannerOption" value="true"
-                               type="checkbox" checked="checked"></td>
-                </tr>
-
-                </tbody>
-            </table>
-
-
-            <input name="editAccount" value="Save Account Information"
-                   type="submit">
-
-        </form>
-        <a href="../order/ListOrders.html">My Orders</a>
-
-    </div>
-
+        <input class="button" type="submit" name="editAccount" value="Save Account Information">
+    </form>
+     <a th:href="'viewOrderList?username='+${username}">My Orders</a>
 </div>
 
 <footer th:replace="common/common_bottom::footer">

@@ -7,25 +7,26 @@
 <header th:replace="common/common_bottom::header">
 </header>
 
-<div id="Content">
 
-    <h2>My Orders</h2>
+<h2>My Orders</h2>
 
-    <table>
-        <tr>
-            <th>Order ID</th>
-            <th>Date</th>
-            <th>Total Price</th>
+<table>
+    <tr>
+        <th>Order ID</th>
+        <th>Date</th>
+        <th>Total Price</th>
+    </tr>
+
+
+        <tr th:each="order : ${orderList}">
+            <td>
+                <a th:href="'viewOrder?orderId='+${order.orderId}" th:text="${order.orderId}"> ${order.orderId}</a>
+            </td>
+            <td th:text="${#dates.format(order.orderDate, 'yyyy/MM/dd hh:mm:ss')}">uibiu</td>
+            <td th:text="'$'+${order.totalPrice}">iubiu</td>
         </tr>
-        <!-- 循环 -->
-        <tr>
-            <td><a href="ViewOrder.html">1000</a></td>
-            <td>2014/03/23 12:00:00</td>
-            <td>$18.50</td>
-        </tr>
-    </table>
 
-</div>
+</table>
 <footer th:replace="common/common_bottom::footer">
 </footer>
 </body>

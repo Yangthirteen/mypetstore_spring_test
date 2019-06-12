@@ -7,48 +7,50 @@
 <header th:replace="common/common_bottom::header">
 </header>
 
+<div th:fragment="includelist">
 <h3>Account Information</h3>
 
 <table>
     <tr>
         <td>First name:</td>
-        <td><input type="text" name="firstName" /></td>
+        <td><input type="text" name="account.firstName " th:value="${account.firstName}"></td>
     </tr>
     <tr>
         <td>Last name:</td>
-        <td><input type="text" name="lastName" /></td>
+        <td><input type="text" name="account.lastName"th:value="${account.lastName}"></td>
     </tr>
     <tr>
         <td>Email:</td>
-        <td><input type="text" name="email" /></td>
+        <td><input type="text" size="40" name="account.email"th:value="${account.email}"></td>
     </tr>
     <tr>
+
         <td>Phone:</td>
-        <td><input type="text" name="phone" /></td>
+        <td><input type="text" name="account.phone"th:value="${account.phone}"></td>
     </tr>
     <tr>
         <td>Address 1:</td>
-        <td><input type="text" name="address1" /></td>
+        <td><input type="text" size="40" name="account.address1"th:value="${account.address1}"></td>
     </tr>
     <tr>
         <td>Address 2:</td>
-        <td><input type="text" name="address2" size="40" /></td>
+        <td><input type="text" size="40" name="account.address2"th:value="${account.address2}"></td>
     </tr>
     <tr>
         <td>City:</td>
-        <td><input type="text" name="city" /></td>
+        <td><input type="text" name="account.city"th:value="${account.city}"></td>
     </tr>
     <tr>
         <td>State:</td>
-        <td><input type="text" name="state" size="4" /></td>
+        <td><input type="text" size="4" name="account.state"th:value="${account.state}"></td>
     </tr>
     <tr>
         <td>Zip:</td>
-        <td><input type="text" name="zip" size="10" /></td>
+        <td><input type="text"size="10" name="account.zip"th:value="${account.zip}"></td>
     </tr>
     <tr>
         <td>Country:</td>
-        <td><input type="text" name="country" size="15" /></td>
+        <td><input type="text"size="15" name="account.country"th:value="${account.country}"></td>
     </tr>
 </table>
 
@@ -57,33 +59,38 @@
 <table>
     <tr>
         <td>Language Preference:</td>
-        <td><select name="languagePreference">
-            <!-- 循环 -->
-            <option>${language }</option>
-
-        </select></td>
+        <td>
+            <select name="account.languagePreference">
+                <option th:value="english" selected="selected">english</option>
+                <option th:value="chinese">chinese</option>
+                <option th:value="japanese">japanese</option>
+            </select>
+        </td>
     </tr>
     <tr>
         <td>Favourite Category:</td>
-        <td><select name="account.favouriteCategoryId">
-            <option value="FISH">FISH</option>
-            <option selected="selected" value="DOGS">DOGS</option>
-            <option value="REPTILES">REPTILES</option>
-            <option value="CATS">CATS</option>
-            <option value="BIRDS">BIRDS</option>
-        </select></td>
+        <td>
+            <select name="account.favouriteCategoryId">
+                <option th:value="FISH">FISH</option>
+                <option selected="selected" th:value="DOGS">DOGS</option>
+                <option th:value="REPTILES">REPTILES</option>
+                <option th:value="CATS">CATS</option>
+                <option th:value="BIRDS">BIRDS</option>
+            </select>
+        </td>
     </tr>
     <tr>
         <td>Enable MyList</td>
-        <td><input type="checkbox" name="listOption" value="1" /></td>
+        <td><input type="checkbox" name="account.listOption" th:value="1" /></td>
     </tr>
     <tr>
         <td>Enable MyBanner</td>
-        <td><input type="checkbox" name="bannerOption" value="1" /></td>
+        <td><input type="checkbox" name="account.bannerOption" th:value="1" /></td>
     </tr>
 
 </table>
 
+</div>
 <footer th:replace="common/common_bottom::footer">
 </footer>
 </body>

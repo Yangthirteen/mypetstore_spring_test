@@ -7,146 +7,147 @@
 <header th:replace="common/common_bottom::header">
 </header>
 
-<div id="Content">
-    <ul class="messages">
-        <li>Thank you, your order has been submitted.</li>
-    </ul>
-    <div id="BackLink">
-        <a href="../catalog/Main.html">Return to Main Menu</a>
-    </div>
 
-    <div id="Catalog">
+<div id="Catalog">
 
-        <table>
-            <tbody>
-            <tr>
-                <th align="center" colspan="2">Order #1000 2014/03/23 10:46:43</th>
-            </tr>
-            <tr>
-                <th colspan="2">Payment Details</th>
-            </tr>
-            <tr>
-                <td>Card Type:</td>
-                <td>MasterCard</td>
-            </tr>
-            <tr>
-                <td>Card Number:</td>
-                <td>999 9999 9999 9999 * Fake number!</td>
-            </tr>
-            <tr>
-                <td>Expiry Date (MM/YYYY):</td>
-                <td>12/03</td>
-            </tr>
-            <tr>
-                <th colspan="2">Billing Address</th>
-            </tr>
-            <tr>
-                <td>First name:</td>
-                <td>ABC</td>
-            </tr>
-            <tr>
-                <td>Last name:</td>
-                <td>XYX</td>
-            </tr>
-            <tr>
-                <td>Address 1:</td>
-                <td>901 San Antonio Road</td>
-            </tr>
-            <tr>
-                <td>Address 2:</td>
-                <td>MS UCUP02-206</td>
-            </tr>
-            <tr>
-                <td>City:</td>
-                <td>Palo Alto</td>
-            </tr>
-            <tr>
-                <td>State:</td>
-                <td>CA</td>
-            </tr>
-            <tr>
-                <td>Zip:</td>
-                <td>94303</td>
-            </tr>
-            <tr>
-                <td>Country:</td>
-                <td>USA</td>
-            </tr>
-            <tr>
-                <th colspan="2">Shipping Address</th>
-            </tr>
-            <tr>
-                <td>First name:</td>
-                <td>ABC</td>
-            </tr>
-            <tr>
-                <td>Last name:</td>
-                <td>XYX</td>
-            </tr>
-            <tr>
-                <td>Address 1:</td>
-                <td>901 San Antonio Road</td>
-            </tr>
-            <tr>
-                <td>Address 2:</td>
-                <td>MS UCUP02-206</td>
-            </tr>
-            <tr>
-                <td>City:</td>
-                <td>Palo Alto</td>
-            </tr>
-            <tr>
-                <td>State:</td>
-                <td>CA</td>
-            </tr>
-            <tr>
-                <td>Zip:</td>
-                <td>94303</td>
-            </tr>
-            <tr>
-                <td>Country:</td>
-                <td>USA</td>
-            </tr>
-            <tr>
-                <td>Courier:</td>
-                <td>UPS</td>
-            </tr>
-            <tr>
-                <td colspan="2">Status: P</td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <table>
-                        <tbody>
-                        <tr>
-                            <th>Item ID</th>
-                            <th>Description</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Total Cost</th>
+    <table>
+        <tr>
+            <th align="center" colspan="2">
+                <b th:text="' Order'+ ${order.orderId}"
+                   th:text="${#dates.format(order.orderDate, 'yyyy/MM/dd hh:mm:ss')}"
+                ></b>
+               </th>
+        </tr>
+        <tr>
+            <th colspan="2">Payment Details</th>
+        </tr>
+        <tr>
+            <td>Card Type:</td>
+            <td th:text="${order.cardType}">${order.cardType}</td>
+        </tr>
+        <tr>
+            <td>Card Number:</td>
+            <td th:text="${order.creditCard} +'* Fake number!'">${order.creditCard} * Fake
+                number!</td>
+        </tr>
+        <tr>
+            <td>Expiry Date (MM/YYYY):</td>
+            <td th:text="${order.expiryDate}">${order.expiryDate}</td>
+        </tr>
+        <tr>
+            <th colspan="2">Billing Address</th>
+        </tr>
+        <tr>
+            <td >First name:</td>
+            <td th:text="${order.billToFirstName}"></td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td th:text="${order.billToLastName}">order.billToLastName /></td>
+        </tr>
+        <tr>
+            <td>Address 1:</td>
+            <td th:text="${order.billAddress1}">order.billAddress1 /></td>
+        </tr>
+        <tr>
+            <td>Address 2:</td>
+            <td th:text="${order.billAddress2}">${order.billAddress2}" /></td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td th:text="${order.billCity}">${order.billCity}" /></td>
+        </tr>
+        <tr>
+            <td>State:</td>
+            <td th:text="${order.billState}">${order.billState}" /></td>
+        </tr>
+        <tr>
+            <td>Zip:</td>
+            <td th:text="${order.billZip}">${order.billZip}" /></td>
+        </tr>
+        <tr>
+            <td>Country:</td>
+            <td th:text="${order.billCountry}">${order.billCountry}" /></td>
+        </tr>
+        <tr>
+            <th colspan="2">Shipping Address</th>
+        </tr>
+        <tr>
+            <td>First name:</td>
+            <td th:text="${order.shipToFirstName}">${order.shipToFirstName}" /></td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td th:text="${order.shipToLastName}">${order.shipToLastName}" /></td>
+        </tr>
+        <tr>
+            <td>Address 1:</td>
+            <td th:text="${order.shipAddress1}">${order.shipAddress1}" /></td>
+        </tr>
+        <tr>
+            <td>Address 2:</td>
+            <td th:text="${order.shipAddress2}">${order.shipAddress2}" /></td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td th:text="${order.shipCity}">${order.shipCity}" /></td>
+        </tr>
+        <tr>
+            <td>State:</td>
+            <td th:text="${order.shipState}">${order.shipState}" /></td>
+        </tr>
+        <tr>
+            <td>Zip:</td>
+            <td th:text="${order.shipZip}">${order.shipZip}" /></td>
+        </tr>
+        <tr>
+            <td>Country:</td>
+            <td th:text="${order.shipCountry}">${order.shipCountry}" /></td>
+        </tr>
+        <tr>
+            <td>Courier:</td>
+            <td><c:out value="${order.courier}" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total Cost</th>
+                    </tr>
+
+                        <tr th:each="lineItem :${order.lineItems}">
+                            <td>
+                                <a th:href="'viewItem?itemId='+${lineItem.item.itemId}"
+                                   th:text="${lineItem.item.itemId}">${lineItem.item.itemId}</a>
+                            </td>
+                            <td >
+                                <b th:if="${lineItem.item != null}"
+                                   th:text="${lineItem.item.attribute1}+ ${lineItem.item.product.name}">
+                                    ${lineItem.item.attribute1}
+                                    ${lineItem.item.product.name}
+                                </b>
+
+                                <i th:if="${lineItem.item == null}">{description unavailable}</i>
+                           </td>
+
+                            <td th:text="${lineItem.quantity}">${lineItem.quantity}</td>
+                            <td th:text="'$'+${lineItem.unitPrice}"></td>
+                            <td th:text="${lineItem.total}"></td>
                         </tr>
 
-                        <tr>
-                            <td><a href="../catalog/Category.html">EST-4</a></td>
-                            <td>Spotted Koi</td>
+                    <tr>
+                        <th colspan="5" th:text="'Total: '+${order.totalPrice}"> </th>
+                    </tr>
+                </table>
+            </td>
+        </tr>
 
-                            <td>1</td>
-                            <td>$18.50</td>
-                            <td></td>
-                        </tr>
-
-                        <tr>
-                            <th colspan="5">Total: $18.50</th>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-
-            </tbody>
-        </table>
-
-    </div>
+    </table>
 
 </div>
 
