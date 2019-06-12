@@ -13,6 +13,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AccountController {
 
+    private Account account=new Account();
+    private boolean authenticated=false;
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     @Autowired
     private AccountService accountService;
 
@@ -34,7 +45,7 @@ public class AccountController {
 
     @PostMapping("/catalog/signOn")
     public String signOn(@RequestParam("username")String username,@RequestParam("password")String password,Model model){
-        Account account=accountService.getAccount(username,password);
+        account=accountService.getAccount(username,password);
         boolean authenticated;
         //String codeSession = code1;
         //String code=(String)code2;
@@ -66,7 +77,8 @@ public class AccountController {
 
     @GetMapping("/catalog/signOff")
     public String signOff(Model model){
-        model.addAttribute("account",null);
+        account=null;
+        model.addAttribute("account",account);
         return "catalog/c_Main";
     }
 
@@ -104,7 +116,12 @@ public class AccountController {
     }
 
     @GetMapping("/catalog/newAccountForm")
-    public String newAccountForm(){
+    public String newAccountForm(Model model){
+        if (account==null)
+            authenticated=false;
+        else authenticated=true;
+        model.addAttribute("authenticated",authenticated);
+        model.addAttribute("account",account);
         return "account/a_NewAccountForm";
     }
 
@@ -117,8 +134,11 @@ public class AccountController {
 
     @GetMapping("/catalog/editAccountForm")
     public String editAccountForm(@RequestParam("username")String username, Model model){
-        Account account=accountService.getAccount(username);
-
+        //account=accountService.getAccount(username);
+        if (account==null)
+            authenticated=false;
+        else authenticated=true;
+        model.addAttribute("authenticated",authenticated);
         model.addAttribute("username",username);
         model.addAttribute("account",account);
 
