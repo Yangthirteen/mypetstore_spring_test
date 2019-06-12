@@ -13,8 +13,8 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
-    @GetMapping("/catalog/SearchServlet")
-    public void SearchServlet(@RequestParam("keyword") String keyword, Model model){
+    @GetMapping("/catalog/search")
+    public void search(@RequestParam("keyword") String keyword, Model model){
         //获取传值，搜索商品名称的关键字
         System.out.println(keyword);
         //查询

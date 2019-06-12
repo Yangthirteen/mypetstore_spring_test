@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -65,8 +66,8 @@ public class OrderController {
         return "cart/c_Cart";
     }
 
-    @GetMapping("/catalog/UpdateCartQuantitiesServlet")
-    public String UpdateCartQuantitiesServlet(@RequestAttribute("cart")Cart cart,@RequestParam("itemId")String itemId){
+    @PostMapping("/catalog/updateCartQuantities")
+    public String updateCartQuantities(@RequestAttribute("cart")Cart cart,@RequestParam("itemId")String itemId){
 
         Iterator<CartItem> cartItems = cart.getAllCartItems();
         while (cartItems.hasNext()) {
