@@ -58,7 +58,7 @@ public class AccountController {
         }
     }
 
-    @GetMapping("/account/signOnForm")
+    @GetMapping("/account/signonForm")
     public String signOnForm(){
         return "account/a_SignonForm";
     }
