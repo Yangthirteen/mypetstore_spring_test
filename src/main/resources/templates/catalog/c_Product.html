@@ -10,13 +10,12 @@
 <div id="Content">
 
     <div id="BackLink">
-        <a href="Category.html">Return
-            to Category</a>
+        <a href="viewCategory?categoryId=${sessionScope.product.categoryId}">Return to ${sessionScope.product.categoryId}</a>
     </div>
 
     <div id="Catalog">
 
-        <h2>Product Name</h2>
+        <h2>${sessionScope.product.name}</h2>
 
         <table>
             <tr>
@@ -28,12 +27,15 @@
             </tr>
             <!-- list -->
             <tr>
-                <td><a href="#">EST-16</a></td>
-                <td>FL-DLH-02</td>
-                <td>Adult Female Persian</td>
+                <td><a href="viewItem?itemId=${item.itemId}">${item.itemId}</a></td>
+                <td>${item.product.productId}</td>
+                <td>${item.attribute1} ${item.attribute2} ${item.attribute3}
+                    ${item.attribute4} ${item.attribute5} ${sessionScope.product.name}</td>
                 <td>$93.50</td>
-                <td><a class="Button" href="../cart/Cart.html">Add
-                    to Cart</a></td>
+                <td>
+                    <a class="Button" href="addItemToCart?workingItemId=${item.itemId}" >Add to Cart</a>
+
+                </td>
             </tr>
             <tr>
                 <td></td>
