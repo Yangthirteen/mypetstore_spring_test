@@ -102,6 +102,7 @@ public class OrderController {
             model.addAttribute("cart",cart);
             return "common/Error";
         }else {
+            cart.setNumberOfItem(cart.getCartItemList().size()-1);
             return "cart/c_Cart";
         }
     }
@@ -153,6 +154,7 @@ public class OrderController {
             boolean isInStock = catalogService.isItemInStock(workingItemId);
             Item item = catalogService.getItem(workingItemId);
             cart.addItem(item, isInStock);
+            cart.setNumberOfItem(cart.getCartItemList().size()+1);
         }
 
 
