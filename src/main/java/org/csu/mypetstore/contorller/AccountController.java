@@ -5,6 +5,7 @@ import org.csu.mypetstore.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,7 +15,8 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    public void usernameIsExistServlet(@RequestParam("username")String username, @RequestParam("message") String message, Model model){
+    @GetMapping("/catalog/usernameIsExist")
+    public void usernameIsExist(@RequestParam("username")String username, @RequestParam("message") String message, Model model){
         Account account = new Account();
         account.setUsername(username);
         System.out.println(username);
@@ -29,6 +31,7 @@ public class AccountController {
         model.addAttribute("message",message);
     }
 
+    @GetMapping("/catalog/signOn")
     public String signOn(@RequestParam("username")String username,@RequestParam("password")String password,@RequestParam("code1")String code1,@RequestParam("code")String code2,Model model){
         Account account=accountService.getAccount(username,password);
         boolean authenticated;
@@ -55,15 +58,18 @@ public class AccountController {
         }
     }
 
+    @GetMapping("/catalog/signOnForm")
     public String signOnForm(){
         return "account/SignonForm";
     }
 
+    @GetMapping("/catalog/signOff")
     public String signOff(Model model){
         model.addAttribute("account",null);
         return "catalog/Main";
     }
 
+    @GetMapping("/catalog/newAccount")
     public String newAccount(@RequestParam("username")String username,
                                     @RequestParam("password")String password,
                                     @RequestParam("account.firstName")String account_firstName,
@@ -96,16 +102,19 @@ public class AccountController {
         return "account/SignonForm";
     }
 
+    @GetMapping("/catalog/newAccountForm")
     public String newAccountForm(){
         return "account/NewAccountForm";
     }
 
+    @GetMapping("/catalog/editAccount")
     public String editAccount(@RequestAttribute("account")Account account, Model model){
         accountService.updateAccount(account);
         model.addAttribute("account",account);
         return "account/EditAccountForm";
     }
 
+    @GetMapping("/catalog/editAccountForm")
     public String editAccountForm(@RequestParam("username")String username, Model model){
         Account account=accountService.getAccount(username);
 

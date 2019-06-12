@@ -23,6 +23,7 @@ public class CatalogController {
         return "catalog/Main";
     }
 
+    @GetMapping("/catalog/viewCategory")
     public String viewCategory(@RequestParam("categoryId") String categoryId, Model model){
         if (categoryId!=null){
             Category category=catalogService.getCategory(categoryId);
@@ -34,6 +35,7 @@ public class CatalogController {
     }
 
 
+    @GetMapping("/catalog/viewProduct")
     public String viewProduct(@RequestParam("productId") String productId, Model model){
         if (productId!=null){
             Product product=catalogService.getProduct(productId);
@@ -44,6 +46,7 @@ public class CatalogController {
         return "catalog/Product";
     }
 
+    @GetMapping("/catalog/viewItem")
     public String viewItem(@RequestParam("itemId") String itemId, Model model){
         if (itemId!=null){
             Item item=catalogService.getItem(itemId);
@@ -52,6 +55,7 @@ public class CatalogController {
         return "catalog/Item";
     }
 
+    @GetMapping("/catalog/searchProduct")
     public String searchProduct(@RequestParam("keyword")String keyword,Model model){
         List<Product> productList=catalogService.searchProductList(keyword);
 
