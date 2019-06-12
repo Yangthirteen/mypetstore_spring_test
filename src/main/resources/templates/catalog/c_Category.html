@@ -23,9 +23,9 @@
             </tr>
             <!-- 循环 -->
             <tr th:each="product : ${productList}">
-                <td><a href="Product.html" th:text="${product.productId}">FL-DLH-02</a>
+                <td><a href="viewProduct?productId=${product.productId}" th:text="${product.productId}">FL-DLH-02</a>
                 </td>
-                <td>Persian</td>
+                <td th:text="${product.name}">Persian</td>
             </tr>
         </table>
 

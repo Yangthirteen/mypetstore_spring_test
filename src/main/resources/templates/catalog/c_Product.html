@@ -10,12 +10,12 @@
 <div id="Content">
 
     <div id="BackLink">
-        <a href="viewCategory?categoryId=${sessionScope.product.categoryId}">Return to ${sessionScope.product.categoryId}</a>
+        <a href="viewCategory?categoryId=${product.categoryId}" th:text="Return to +${product.categoryId}">text</a>
     </div>
 
     <div id="Catalog">
 
-        <h2>${sessionScope.product.name}</h2>
+        <h2 th:text="${product.name}">${sessionScope.product.name}</h2>
 
         <table>
             <tr>
@@ -26,8 +26,8 @@
                 <th>&nbsp;</th>
             </tr>
             <!-- list -->
-            <tr>
-                <td><a href="viewItem?itemId=${item.itemId}">${item.itemId}</a></td>
+            <tr th:each="item :itemList">
+                <td><a href="viewItem?itemId=${item.itemId}" th:text="${item.itemId}">${item.itemId}</a></td>
                 <td>${item.product.productId}</td>
                 <td>${item.attribute1} ${item.attribute2} ${item.attribute3}
                     ${item.attribute4} ${item.attribute5} ${sessionScope.product.name}</td>
