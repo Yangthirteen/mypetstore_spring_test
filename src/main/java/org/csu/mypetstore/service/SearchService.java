@@ -1,6 +1,10 @@
 package org.csu.mypetstore.service;
 
+import org.csu.mypetstore.domain.Product;
+
+import java.util.List;
+
 public interface SearchService {
 
-    public String searchMessage(String keyword);
+    public List<Product> searchMessage(String keyword);
 }

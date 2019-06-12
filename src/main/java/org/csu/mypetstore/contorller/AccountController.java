@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,14 +32,14 @@ public class AccountController {
         model.addAttribute("message",message);
     }
 
-    @GetMapping("/catalog/signOn")
-    public String signOn(@RequestParam("username")String username,@RequestParam("password")String password,@RequestParam("code1")String code1,@RequestParam("code")String code2,Model model){
+    @PostMapping("/catalog/signOn")
+    public String signOn(@RequestParam("username")String username,@RequestParam("password")String password,Model model){
         Account account=accountService.getAccount(username,password);
         boolean authenticated;
-        String codeSession = code1;
-        String code=(String)code2;
+        //String codeSession = code1;
+        //String code=(String)code2;
         boolean flag;
-        if (!code.toLowerCase().equals(codeSession.toLowerCase())){
+        if (false){//!code.toLowerCase().equals(codeSession.toLowerCase())//@RequestParam("code1")String code1,@RequestParam("code")String code2,
             flag=true;
             model.addAttribute("flag",flag);
             return "account/a_SignonForm";
