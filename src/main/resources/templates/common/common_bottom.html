@@ -13,15 +13,11 @@
                   <img align="middle" src="/images/separator.gif" />
 
 
-
-
                       <a  th:if="${account == null}" href="signonForm">  Sign In </a>
 
 
                       <div th:if="${account != null}">
                           <a th:if="${!authenticated}" href="signonForm">  Sign In </a>
-
-
 
 
                           <a th:if="${authenticated}" href="signOff">   Sign Out </a>
