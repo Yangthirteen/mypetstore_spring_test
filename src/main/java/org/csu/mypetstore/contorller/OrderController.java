@@ -69,13 +69,12 @@ public class OrderController {
 
     @GetMapping("/catalog/viewCart")
     public String viewCart(Model model){
-
         model.addAttribute("cart",cart);
         return "cart/c_Cart";
     }
 
     @PostMapping("/catalog/updateCartQuantities")
-    public String updateCartQuantities(@RequestParam("name")String itemId){
+    public String updateCartQuantities(@RequestParam("name")String itemId,Model model){
 
         Iterator<CartItem> cartItems = cart.getAllCartItems();
         while (cartItems.hasNext()) {
@@ -91,6 +90,7 @@ public class OrderController {
                 e.printStackTrace();
             }
         }
+        model.addAttribute("cart",cart);
         return "cart/c_Cart";
     }
 
@@ -108,8 +108,8 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/catalog/newOrderServlet")
-    public String newOrderServlet(@RequestAttribute("order") Order order,@RequestParam("shippingAddressRequired") String shippingAddressRequired,Model model){
+    @GetMapping("/catalog/newOrder")
+    public String newOrder(@RequestAttribute("order") Order order,@RequestParam("shippingAddressRequired") String shippingAddressRequired,Model model){
         model.addAttribute("order", order);
 
         String a=shippingAddressRequired;

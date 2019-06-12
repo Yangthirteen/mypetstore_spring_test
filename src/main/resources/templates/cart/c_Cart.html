@@ -43,7 +43,7 @@
                         <td th:text="${cartItem.inStock}">${cartItem.inStock}</td>
 
                         <td>
-                            <input type="text" size="3" th:name="${cartItem.item.itemId}"
+                            <input type="text" size="3" th:name="name"
                                    id="update"  th:value="${cartItem.quantity}"  />
                         </td>
                         <td th:text="'$'+${cartItem.item.listPrice}">$93.50</td>
