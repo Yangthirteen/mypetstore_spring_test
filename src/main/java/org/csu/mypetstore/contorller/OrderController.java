@@ -103,6 +103,7 @@ public class OrderController {
             return "common/Error";
         }else {
             cart.setNumberOfItem(cart.getCartItemList().size()-1);
+            model.addAttribute("cart",cart);
             return "cart/c_Cart";
         }
     }
