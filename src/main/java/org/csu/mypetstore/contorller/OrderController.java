@@ -75,7 +75,7 @@ public class OrderController {
     }
 
     @PostMapping("/catalog/updateCartQuantities")
-    public String updateCartQuantities(@RequestAttribute("cart")Cart cart,@RequestParam("itemId")String itemId){
+    public String updateCartQuantities(@RequestParam("itemId")String itemId){
 
         Iterator<CartItem> cartItems = cart.getAllCartItems();
         while (cartItems.hasNext()) {
@@ -95,7 +95,7 @@ public class OrderController {
     }
 
     @GetMapping("/catalog/removeItemFromCart")
-    public String removeItemFromCart(@RequestAttribute("cart") Cart cart,@RequestParam("cartItemId")String cartItemId,Model model){
+    public String removeItemFromCart(@RequestParam("cartItemId")String cartItemId,Model model){
         Item item=cart.removeItemById(cartItemId);
         if (item==null){
             model.addAttribute("message","Attempted to remove null CartItem from Cart.");
