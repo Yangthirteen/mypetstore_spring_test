@@ -1,6 +1,7 @@
 package org.csu.mypetstore.contorller;
 
 import org.csu.mypetstore.domain.Account;
+import org.csu.mypetstore.domain.test;
 import org.csu.mypetstore.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AccountController {
 
-    private Account account=new Account();
-    private boolean authenticated=false;
+    @Autowired
+    private Account account;
+
+    @Autowired
+    private org.csu.mypetstore.domain.test test;
+
+    /*private boolean authenticated=false;
 
     public boolean getAuthenticated() {
         return authenticated;
@@ -26,7 +32,7 @@ public class AccountController {
 
     public Account getAccount() {
         return account;
-    }
+    }*/
 
     public void setAccount(Account account) {
         this.account = account;
@@ -125,10 +131,10 @@ public class AccountController {
 
     @GetMapping("/catalog/newAccountForm")
     public String newAccountForm(Model model){
-        if (account==null)
-            authenticated=false;
-        else authenticated=true;
-        model.addAttribute("authenticated",authenticated);
+        if (account.getUsername()==null)
+            test.setAuthenticated(false);
+        else test.setAuthenticated(true);
+        model.addAttribute("authenticated",test.getAuthenticated());
         model.addAttribute("account",account);
         return "account/a_NewAccountForm";
     }
@@ -144,9 +150,9 @@ public class AccountController {
     public String editAccountForm(@RequestParam("username")String username, Model model){
         //account=accountService.getAccount(username);
         if (account==null)
-            authenticated=false;
-        else authenticated=true;
-        model.addAttribute("authenticated",authenticated);
+            test.setAuthenticated(false);
+        else test.setAuthenticated(true);
+        model.addAttribute("authenticated",test.getAuthenticated());
         model.addAttribute("username",username);
         model.addAttribute("account",account);
 

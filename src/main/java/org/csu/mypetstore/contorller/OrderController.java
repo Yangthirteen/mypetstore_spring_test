@@ -19,7 +19,11 @@ import java.util.List;
 
 @Controller
 public class OrderController {
+    @Autowired
+    private Account account;
 
+    @Autowired
+    private org.csu.mypetstore.domain.test test;
     private Cart cart=new Cart();
 
     public Cart getCart() {
@@ -41,6 +45,11 @@ public class OrderController {
 
     @GetMapping("/catalog/viewOrderList")
     public String viewOrderList(@RequestParam("username")String username, Model model){
+        if (account==null)
+            test.setAuthenticated(false);
+        else test.setAuthenticated(true);
+        model.addAttribute("authenticated",test.getAuthenticated());
+        model.addAttribute("account",account);
         if (username!=null){
             List<Order> orderList=orderService.getOrdersByUsername(username);
             model.addAttribute("orderList",orderList);
@@ -49,7 +58,12 @@ public class OrderController {
     }
 
     @GetMapping("/catalog/viewOrder")
-    public String viewOrder(@RequestAttribute("account")Account account,@RequestAttribute("order")Order order){
+    public String viewOrder(@RequestAttribute("account")Account account,@RequestAttribute("order")Order order,Model model){
+        if (account==null)
+            test.setAuthenticated(false);
+        else test.setAuthenticated(true);
+        model.addAttribute("authenticated",test.getAuthenticated());
+        model.addAttribute("account",account);
         orderService.setOrderId(order);
 
         try{
@@ -69,12 +83,22 @@ public class OrderController {
 
     @GetMapping("/catalog/viewCart")
     public String viewCart(Model model){
+        if (account==null)
+            test.setAuthenticated(false);
+        else test.setAuthenticated(true);
+        model.addAttribute("authenticated",test.getAuthenticated());
+        model.addAttribute("account",account);
         model.addAttribute("cart",cart);
         return "cart/c_Cart";
     }
 
     @PostMapping("/catalog/updateCartQuantities")
     public String updateCartQuantities(@RequestParam("name")String itemId,Model model){
+        if (account==null)
+            test.setAuthenticated(false);
+        else test.setAuthenticated(true);
+        model.addAttribute("authenticated",test.getAuthenticated());
+        model.addAttribute("account",account);
 
         Iterator<CartItem> cartItems = cart.getAllCartItems();
         while (cartItems.hasNext()) {
@@ -96,6 +120,12 @@ public class OrderController {
 
     @GetMapping("/catalog/removeItemFromCart")
     public String removeItemFromCart(@RequestParam("cartItemId")String cartItemId,Model model){
+        if (account==null)
+            test.setAuthenticated(false);
+        else test.setAuthenticated(true);
+        model.addAttribute("authenticated",test.getAuthenticated());
+        model.addAttribute("account",account);
+
         Item item=cart.removeItemById(cartItemId);
         if (item==null){
             model.addAttribute("message","Attempted to remove null CartItem from Cart.");
@@ -108,9 +138,15 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/catalog/newOrder")
-    public String newOrder(@RequestAttribute("order") Order order,@RequestParam("shippingAddressRequired") String shippingAddressRequired,Model model){
-        model.addAttribute("order", order);
+    @PostMapping("/catalog/newOrder")
+    public String newOrder(@RequestParam("shippingAddressRequired") String shippingAddressRequired,Model model){
+        if (account==null)
+            test.setAuthenticated(false);
+        else test.setAuthenticated(true);
+        model.addAttribute("authenticated",test.getAuthenticated());
+        model.addAttribute("account",account);
+
+        //model.addAttribute("order", order);
 
         String a=shippingAddressRequired;
         if (a!=null){
@@ -121,7 +157,12 @@ public class OrderController {
     }
 
     @GetMapping("/catalog/newOrderForm")
-    public String newOrderForm(@RequestAttribute("account")Account account,@RequestAttribute("cart")Cart cart,Model model){
+    public String newOrderForm(Model model){
+        if (account==null)
+            test.setAuthenticated(false);
+        else test.setAuthenticated(true);
+        model.addAttribute("authenticated",test.getAuthenticated());
+        model.addAttribute("account",account);
 
         if (account == null) {
             model.addAttribute("message","You must sign on before attempting to check out.  Please sign on and try checking out again.");
@@ -139,6 +180,11 @@ public class OrderController {
 
     @GetMapping("/catalog/listOrders")
     public String listOrders(@RequestAttribute("account")Account account,Model model){
+        if (account==null)
+            test.setAuthenticated(false);
+        else test.setAuthenticated(true);
+        model.addAttribute("authenticated",test.getAuthenticated());
+        model.addAttribute("account",account);
 
         List<Order> orderList = orderService.getOrdersByUsername(account.getUsername());
 
@@ -148,6 +194,11 @@ public class OrderController {
 
     @GetMapping("/catalog/addItemToCart")
     public String addItemToCart(@RequestParam("workingItemId")String workingItemId,Model model){
+        if (account==null)
+            test.setAuthenticated(false);
+        else test.setAuthenticated(true);
+        model.addAttribute("authenticated",test.getAuthenticated());
+        model.addAttribute("account",account);
 
         if (cart.containsItemId(workingItemId)){
             cart.incrementQuantityByItemId(workingItemId);

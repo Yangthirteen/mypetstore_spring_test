@@ -1,7 +1,10 @@
 package org.csu.mypetstore.domain;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import java.io.Serializable;
 
+@ConfigurationProperties(prefix = "account")
 public class Account implements Serializable {
 
   private static final long serialVersionUID = 8751282105532159742L;

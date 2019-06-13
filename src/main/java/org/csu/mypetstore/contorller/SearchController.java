@@ -2,6 +2,7 @@ package org.csu.mypetstore.contorller;
 
 import org.csu.mypetstore.domain.Product;
 import org.csu.mypetstore.service.SearchService;
+import org.csu.mypetstore.service.impl.SearchServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,4 +40,11 @@ public class SearchController {
     }
 
 
+    public static void main(String[] args) {
+        SearchService searchService=new SearchServiceImpl();
+        List<Product> productList = searchService.searchMessage("a");
+        for (int i=0;i<productList.size();i++){
+            System.out.println(productList.get(i).getName());
+        }
+    }
 }
