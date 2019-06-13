@@ -131,7 +131,7 @@ public class AccountController {
 
     @GetMapping("/catalog/newAccountForm")
     public String newAccountForm(Model model){
-        if (account.getUsername()==null)
+        if (account==null)
             test.setAuthenticated(false);
         else test.setAuthenticated(true);
         model.addAttribute("authenticated",test.getAuthenticated());
